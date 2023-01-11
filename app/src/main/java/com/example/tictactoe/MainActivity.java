@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         content = new MyDraw(this);
         setContentView(content);
         content.setOnTouchListener(this);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //setContentView(R.layout.activity_main);
     }
 
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View view, MotionEvent event) {
+        if (END) {
+            return false;
+        }
         System.out.println(COUNT);
         float x = event.getX();
         float y = event.getY();
@@ -207,9 +211,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         @SuppressLint("DrawAllocation")
         @Override
         protected void onDraw(Canvas canvas) {
+
             if (END) {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (Exception ignored) {}
                 END = false;
             }
@@ -261,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 elements = new float[][][]{{{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}};
                 COUNT = false;
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (Exception ignored) {}
                 END = true;
             } else if (ENDGAME == 2) {
@@ -279,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 elements = new float[][][]{{{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}};
                 COUNT = false;
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (Exception ignored) {}
                 END = true;
             } else if (ENDGAME == 3) {
@@ -300,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 elements = new float[][][]{{{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}}};
                 COUNT = false;
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (Exception ignored) {}
                 END = true;
             }
